@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="row">
+<div class="row" style="height:80px;">
   <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -18,18 +18,18 @@
 </div>
 
 <div class="row">
-  <div class=".col-md-2">
-    <%= render partial: 'layouts/left' %>
+  <div class="col-md-2">
+    <%= render partial: 'games/left' %>
   </div>
-  <div class=".col-md-8">
+  <div class="col-md-8">
     <%= yield %>
   </div>
-  <div class=".col-md-2">
-    <%= render partial: 'layouts/right' %>
+  <div class="col-md-2">
+    <%= render partial: 'games/right' %>
   </div>
 </div>
 <div class="row">
-  <%= render partial: 'layouts/stats' %>
+  <%= render partial: 'games/stats' %>
 </div>
 </body>
 </html>
