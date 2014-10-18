@@ -3,7 +3,7 @@ require "mechanize"
 require 'open-uri'
 require 'addressable/uri'
 
-module YouTubeVideoGetter
+module YoutubeVideoGetter
 
   def self.query(search) # Returns array of ['video title', 'vidoecode11']
     Mechanize.new.
