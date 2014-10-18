@@ -1,0 +1,24 @@
+default: &defaults
+  adapter: postgresql
+  encoding: unicode
+  database: renba
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: sqlite3
+  database: db/dev_renba.sqlite3
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/test_renba.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  <<: *defaults
+  adapter: postgresql
+  encoding: unicode
+  database: prod_renba
