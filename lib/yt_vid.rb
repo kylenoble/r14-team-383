@@ -5,17 +5,33 @@ require 'addressable/uri'
 
 module YtVid
 
-  def self.query(search) # Returns array of ['video title', 'vidoecode11']
-    Mechanize.new.
+  def self.query(search) # Returns an Array of Hash results
+    results = Mechanize.new.
       tap { |i| i.follow_meta_refresh = true }.
-      get("https://www.youtube.com/results?search_query=#{Addressable::URI.parse(search).normalize}").
-        links.
-        select {|v| v.href["/watch?v="]}.
-        delete_if {|v| v.text["\n"]}.
-        map {|v| [v.text,v.href[(v.href.index("=")+1)..-1]]}
+      get("https://www.youtube.com/results?search_query=#{Addressable::URI.parse(search).normalize}")
+    results.parser.css("ol.item-section > li")[1..-1].map do |result|
+      {
+        title: result.css("div:nth-child(1)").css("div:nth-child(2)").css("h3").text,
+        video: result.css("div:nth-child(1)").css("div:nth-child(2)").css("h3 > a").first[:href].dup.tap{|i|i.replace i[(i.index("=").to_i+1)..-1]},
+        views: result.css("div:nth-child(1)").css("div:nth-child(2)").css("li:nth-child(3)").text,
+        new: !!result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(4)").css("ul:nth-child(1)").text["New"],
+        hd: !!result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(4)").css("ul:nth-child(1)").text["HD"],
+        description: result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(3)").text
+      }
+    end
   end
 
-  def self.vid_stats(video_code)
+  def self.old_query(search) # Returns array of ['video title', 'vidoecode11']
+    Mechanize.new.
+        tap { |i| i.follow_meta_refresh = true }.
+        get("https://www.youtube.com/results?search_query=#{Addressable::URI.parse(search).normalize}").
+      links.
+      select {|v| v.href["/watch?v="]}.
+      delete_if {|v| v.text["\n"]}.
+      map {|v| [v.text,v.href[(v.href.index("=")+1)..-1]]}
+  end
+
+  def self.vid_stats(video_code) # Video page hit.  Views are rounded to the nearest 1000
     x = Nokogiri::HTML(open("https://www.youtube.com/watch?v=#{video_code}"))
     {
       video: video_code,
