@@ -3,7 +3,7 @@ require "mechanize"
 require 'open-uri'
 require 'addressable/uri'
 
-module YoutubeVideoGetter
+module YtVid
 
   def self.query(search) # Returns array of ['video title', 'vidoecode11']
     Mechanize.new.
@@ -27,6 +27,7 @@ module YoutubeVideoGetter
     }
   end
 
+  # https://developers.google.com/youtube/player_parameters
   # Recommended included options
   # {:origin => request.env["REQUEST_URI"]}
 
@@ -68,11 +69,11 @@ module YoutubeVideoGetter
     parameters=("") if parameters.length.==(1)
 
     if options[:short]
-      "http://youtu.be/#{video_code}".<< parameters
+      "http://youtu.be/#{video_code}".<<(parameters).html_safe
     elsif options[:embed]
-      "//www.youtube.com/embed/#{video_code}".<< parameters
+      "//www.youtube.com/embed/#{video_code}".<<(parameters).html_safe
     else
-      "https://www.youtube.com/watch?v=#{video_code}".<< parameters.gsub("?","&")
+      "https://www.youtube.com/watch?v=#{video_code}".<<(parameters.gsub("?","&")).html_safe
     end
   end
 
