@@ -4,15 +4,15 @@ class CreateVideos < ActiveRecord::Migration
       t.integer :game_id 
       t.text :name
       t.text :video_code
-      t.integer :renba_views
-      t.integer :problem_reports
+      t.integer :renba_views, null: false, default: 1
+      t.integer :problem_reports, null: false, default: 1
       t.text :license
       t.datetime :published_at
-      t.integer :views 
-      t.integer :likes
-      t.integer :dislikes
-      t.boolean :new
-      t.boolean :hd
+      t.integer :views, null: false, default: 1
+      t.integer :likes, null: false, default: 1
+      t.integer :dislikes, null: false, default: 1
+      t.boolean :new, null: false, default: false
+      t.boolean :hd, null: false, default: false
       t.text :description
       t.timestamps null: false
     end
