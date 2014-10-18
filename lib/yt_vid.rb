@@ -57,7 +57,7 @@ module YtVid
     # listType
     parameters.ingest("loop=1") if options[:loop]
     parameters.ingest("modestbranding=1") if options[:noytlogo]
-    parameters.ingest("origin=#{CGI.escape(options[:origin])}") if options[:origin]
+    parameters.ingest("origin=http://#{URI.parse(options[:origin]).host}") if options[:origin]
     # playerapiid
     # playlist
     parameters.ingest("playsinline=1") if options[:playinline]
