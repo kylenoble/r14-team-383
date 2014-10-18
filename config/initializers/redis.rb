@@ -1,3 +1,3 @@
-if ENV["REDISCLOUD_URL"]
-  $redis = Redis.connect(:url => ENV["REDISCLOUD_URL"])
+if ENV["REDISGREEN_URL"]
+  $redis = Redis.new(url: ENV["REDISGREEN_URL"], driver: :hiredis)
 end

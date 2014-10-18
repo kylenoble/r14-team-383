@@ -15,6 +15,7 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem "resque", "~> 1.25.2", :require => "resque/server"
 gem 'redis'
+gem 'hiredis'
 gem 'rake'
 gem 'nokogiri'
 gem 'mechanize'
