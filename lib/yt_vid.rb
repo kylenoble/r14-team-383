@@ -29,7 +29,7 @@ module YtVid
 
   # https://developers.google.com/youtube/player_parameters
   # Recommended included options
-  # {:origin => request.env["REQUEST_URI"]}
+  # {:embed => true, :autoplay => true, :origin => request.env["REQUEST_URI"]}
 
   def self.string_to_url(video_code, options = {})
     options.default = false
@@ -57,7 +57,7 @@ module YtVid
     # listType
     parameters.ingest("loop=1") if options[:loop]
     parameters.ingest("modestbranding=1") if options[:noytlogo]
-    parameters.ingest("origin=#{options[:origin]}") if options[:origin]
+    parameters.ingest("origin=#{CGI.escape(options[:origin])}") if options[:origin]
     # playerapiid
     # playlist
     parameters.ingest("playsinline=1") if options[:playinline]

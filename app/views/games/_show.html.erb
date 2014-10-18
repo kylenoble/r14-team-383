@@ -1,4 +1,4 @@
 <!-- 16:9 aspect ratio -->
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src=<%= YtVid.string_to_url("dQw4w9WgXcQ",{embed: true, autoplay: true}) %>></iframe>
+  <iframe class="embed-responsive-item" src=<%= YtVid.string_to_url("dQw4w9WgXcQ",{embed: true, autoplay: true,origin: request.env["REQUEST_URI"]}) %>></iframe>
 </div>
