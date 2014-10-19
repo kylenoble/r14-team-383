@@ -13,17 +13,21 @@ $(window).ready(function() {
 	$("th").removeClass("tooltip");
 });
 
-$(document).ready(function() {
+$(window).ready(function() {
 	$('#search').keyup(function() {
 		$('.panel').removeClass('hidden');
+		$('.carousel-content').css('height', '90%');
 	});
+	// $('#search').keyup(function() {
+		
+	// });
 });
 
-// $(document).ready(function() {
-	
-// 	if ($('#search').val().length > 0 {
-// 		$('.panel').show();
-// 	});
-	
-
+// $(document).ready(function() {	
+// 	if ($('#search').val().length > 0) {
+// 		$('.panel').removeClass('hidden');
+// 	} else {
+// 		$('.panel').addClass('hidden');
+// 	}
 // });
+
