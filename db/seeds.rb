@@ -76,13 +76,12 @@ def parse_player_data(url)
 			player_string += (line.content + " ")
 		end
 	end
-	return player_string
+	player_string
 end
 
 @i = 0
 def seed_db(csv_file, team_abbrevs, value)
-	games = CSV.open csv_file, headers: true, header_converters: :symbol
-	games.each do |row|
+	CSV.foreach(csv_file, {headers: true, header_converters: :symbol}) do |row|
 		game_type = row[:game_type]
 		date = row[:date]
 		home_team = row[:home_team]
@@ -92,7 +91,7 @@ def seed_db(csv_file, team_abbrevs, value)
 		away_team_abv = team_abbrevs[away_team]
 		away_score = row[:score_against]
 		team_urls = create_box_url(home_team_abv, away_team_abv, date)
-
+    puts team_urls
 		home_url = team_urls[0]
 		home_players = parse_player_data(home_url)
 		away_url = team_urls[1]
@@ -116,9 +115,9 @@ def seed_db(csv_file, team_abbrevs, value)
 end
 
 if Rails.env["production"]
-	seed_db("./public/nba-data.csv", team_abbrevs, 50000)
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
 else
-	seed_db("./public/nba-data.csv", team_abbrevs, 10)
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
 end
 
 

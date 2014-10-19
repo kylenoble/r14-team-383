@@ -5,6 +5,10 @@ require 'addressable/uri'
 
 module YtVid
 
+  # Google search tips
+  # OR range etc https://support.google.com/websearch/answer/136861?hl=en
+  # punctuation: https://support.google.com/websearch/answer/2466433
+
   def self.query(search) # Returns an Array of Hash results
     results = Mechanize.new.
       tap { |i| i.follow_meta_refresh = true }.
