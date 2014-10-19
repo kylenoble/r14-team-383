@@ -21,7 +21,6 @@ gem 'hiredis'
 gem 'rake'
 gem 'nokogiri'
 gem 'mechanize'
-gem 'mightystring', '0.1.4'
 group :therubyracer do
   gem 'therubyracer', :platform=>:ruby
 end

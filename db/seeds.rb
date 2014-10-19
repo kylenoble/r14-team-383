@@ -141,12 +141,13 @@ def seed_db(csv_file, team_abbrevs, value)
 
 		if @i % 500 == 0
 			sleep(300)
-			puts "Sleep complete"
+			puts 'Sleep complete'
 		end
 
 		unless Game.find_by(date: date, home_team: home_team)
-			puts "Game created!"
-			Game.create(game_type: game_type, date: date, home_team: home_team, home_team_abv: home_team_abv, home_score: home_score, home_url: home_url, home_players: home_players, away_team: away_team, away_team_abv: away_team_abv, away_score: away_score, away_url: away_url, away_players: away_players)
+			puts 'Game created!' unless Rails.env["production"]
+			game = Game.create(game_type: game_type, date: date, home_team: home_team, home_team_abv: home_team_abv, home_score: home_score, home_url: home_url, home_players: home_players, away_team: away_team, away_team_abv: away_team_abv, away_score: away_score, away_url: away_url, away_players: away_players)
+      Resque.enqueue(YoutubeGetter, game.id)
 		end
 	end
 end

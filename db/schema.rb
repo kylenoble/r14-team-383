@@ -64,7 +64,9 @@ ActiveRecord::Schema.define(version: 20141018190114) do
     t.integer  "dislikes",        default: 1,     null: false
     t.boolean  "new",             default: false, null: false
     t.boolean  "hd",              default: false, null: false
+    t.boolean  "highlights",      default: false, null: false
     t.text     "description"
+    t.text     "length"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
 >>>>>>> theirs
