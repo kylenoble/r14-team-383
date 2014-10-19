@@ -1,10 +1,18 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show]
+
 
   # GET /games
   # GET /games.json
   def index
     search_term = params[:query]
+  end
+
+  def show
+    @game = Game.first
+    respond_to do |format|
+      format.js {render 'sample'} # Change render when ready
+      format.html {render 'show', object: :game, layout: nil} # Change render when ready
+    end
   end
 
   def sample
@@ -15,14 +23,10 @@ class GamesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_game
-    @game = Game.find(params[:id])
-  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def game_params
-    params[:game]
+    params.require("game").permit(:id)
   end
 
 end
