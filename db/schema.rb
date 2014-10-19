@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< ours
 ActiveRecord::Schema.define(version: 20141018062909) do
+=======
+ActiveRecord::Schema.define(version: 20141018190114) do
+>>>>>>> theirs
 
   create_table "games", force: true do |t|
     t.text     "game_type"
@@ -40,6 +44,7 @@ ActiveRecord::Schema.define(version: 20141018062909) do
     t.integer  "game_id"
     t.text     "name"
     t.text     "video_code"
+<<<<<<< ours
     t.integer  "renba_views"
     t.integer  "problem_reports"
     t.text     "license"
@@ -49,6 +54,20 @@ ActiveRecord::Schema.define(version: 20141018062909) do
     t.integer  "dislikes"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+=======
+    t.integer  "renba_views",     default: 1,     null: false
+    t.integer  "problem_reports", default: 1,     null: false
+    t.text     "license"
+    t.datetime "published_at"
+    t.integer  "views",           default: 1,     null: false
+    t.integer  "likes",           default: 1,     null: false
+    t.integer  "dislikes",        default: 1,     null: false
+    t.boolean  "new",             default: false, null: false
+    t.boolean  "hd",              default: false, null: false
+    t.text     "description"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+>>>>>>> theirs
   end
 
   add_index "videos", ["created_at"], name: "index_videos_on_created_at"

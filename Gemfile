@@ -8,13 +8,16 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'addressable'
 gem 'turbolinks'
+gem "algoliasearch-rails"
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
+gem 'bootstrap-slider-rails'
 gem "resque", "~> 1.25.2", :require => "resque/server"
 gem 'redis'
+gem 'hiredis'
 gem 'rake'
 gem 'nokogiri'
 gem 'mechanize'
@@ -36,6 +39,7 @@ group :development do
   gem 'annotate', '~> 2.6.5'
 end
 group :production do
+  gem 'heroku-api'
   gem 'pg'
   gem 'rails_12factor'
   gem 'rails_log_stdout',	github: 'heroku/rails_log_stdout'
