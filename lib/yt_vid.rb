@@ -9,10 +9,10 @@ module YtVid
   # OR range etc https://support.google.com/websearch/answer/136861?hl=en
   # punctuation: https://support.google.com/websearch/answer/2466433
 
-  def self.query(search) # Returns an Array of Hash results
+  def self.query(search, filters = "") # Returns an Array of Hash results
     results = Mechanize.new.
       tap { |i| i.follow_meta_refresh = true }.
-      get("https://www.youtube.com/results?search_query=#{Addressable::URI.parse(search).normalize}")
+      get("https://www.youtube.com/results?search_query=#{Addressable::URI.parse(search).normalize + filters}")
     results.parser.css("ol.item-section > li")[1..-1].map do |result|
       {
         title: result.css("div:nth-child(1)").css("div:nth-child(2)").css("h3").text,
@@ -20,7 +20,8 @@ module YtVid
         views: result.css("div:nth-child(1)").css("div:nth-child(2)").css("li:nth-child(3)").text,
         new: !!result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(4)").css("ul:nth-child(1)").text["New"],
         hd: !!result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(4)").css("ul:nth-child(1)").text["HD"],
-        description: result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(3)").text
+        description: result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(3)").text,
+        length: result.css("div:nth-child(1)").css("div:nth-child(1)").css("a:nth-child(1)").css("span:nth-child(2)").text
       }
     end
   end
