@@ -9,7 +9,7 @@ class GamesController < ApplicationController
 
   def sample
     @game = Game.first
-    @video = Video.where(game_id: @game.id).sort_by_quality.first || no_video_available
+    @video = Video.where(game_id: @game.id).sort_by_quality.first
     @links = ["Link A", "Link B", "Link C", "Link D", "Link E", "Link F"]
     render layout: nil
   end
@@ -25,7 +25,4 @@ class GamesController < ApplicationController
     params[:game]
   end
 
-  def no_video_available
-    "JN_xDdEY4Uk"
-  end
 end

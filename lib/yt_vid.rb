@@ -43,9 +43,9 @@ module YtVid
       user_name: x.css('a.yt-user-name').text,
       description: x.css('p#eow-description').text,
       category: x.css('li.watch-meta-item:nth-child(1)').css('ul:nth-child(2)').css('li:nth-child(1)').css('a:nth-child(1)').first[:href].try(:[], 1..-1),
-      views: Integer(String(/(\d+)/.match(x.css('div.watch-view-count').text.strip.gsub(',', ''))))*1000,
-      likes: Integer(String(/(\d+)/.match(x.css('button#watch-like').text.strip.gsub(',', ''))))*1000,
-      dislikes: Integer(String(/(\d+)/.match(x.css('button#watch-dislike').text.strip.gsub(',', ''))))*1000,
+      views: String(/(\d+)/.match(x.css('div.watch-view-count').text.strip.gsub(',', ''))).to_i*1000,
+      likes: String(/(\d+)/.match(x.css('button#watch-like').text.strip.gsub(',', ''))).to_i*1000,
+      dislikes: String(/(\d+)/.match(x.css('button#watch-dislike').text.strip.gsub(',', ''))).to_i*1000,
       published: x.css('strong.watch-time-text').text[13..-1],
       license: x.css('li.watch-meta-item:nth-child(2)').text.gsub("\n", '').strip.tap {|i| i.replace i[i.index(' ').to_i..-1].strip}
     }

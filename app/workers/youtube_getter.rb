@@ -11,8 +11,8 @@ class YoutubeGetter
         query( search_string(game_id) ).
         sort_by {|hsh| hsh[:length].gsub(":","").to_i}.
         delete_if {|hsh| hsh[:description].=~(/NBA 2K1\d/i)}.
-        take(grab_this_qty).
-        delete_if {|hsh| hsh[:length].gsub(":","").to_i < 200}
+        delete_if {|hsh| hsh[:length].gsub(":","").to_i < 200}.
+        take(grab_this_qty)
 
     gathering_data.each do |video_data|
       stats = YtVid.vid_stats(video_data[:video])
@@ -40,7 +40,7 @@ class YoutubeGetter
   private
 
   def self.search_string(game_id)
-    game = Game.where(game_id).first
+    game = Game.where(id: game_id).first
     output = ''
     output.concat( "#{game.game_type} " ) if game.game_type["playoffs"]
     output.concat( "\"#{game.home_team}\"" )
@@ -51,6 +51,7 @@ class YoutubeGetter
   end
 
   def self.grab_this_qty
-    10
+    12
   end
+
 end
