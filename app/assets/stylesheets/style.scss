@@ -26,9 +26,6 @@ body {
 	}
 }
 
-input, button, .btn, .form-control {
-	border-radius: 0;
-}
 .navbar-inverse button {
 	margin-left: -3.5px;
 }
@@ -40,7 +37,7 @@ input, button, .btn, .form-control {
 	background-image: $background;
 	background-size: cover;
 	background-position: center;
-	height: 600px
+	height: 100vh;
 }
 
 #jordan{
@@ -66,7 +63,7 @@ input, button, .btn, .form-control {
 .carousel-content {
 	text-align: center;
 	position: absolute;
-	top: 200px;
+	top: 36%;
 	left: 0;
 	right: 0;
 	color: $white !important;
@@ -85,14 +82,15 @@ input, button, .btn, .form-control {
 	button, input {
 		float: left;
 		margin:0;
-		border-radius: 0;
 	}
 	input {
 		width:70%;
-		height: 40px;
-		padding-left: 5px;
+		height: 44px;
+		padding-left: 12px;
 		background-color: rgba(255, 255, 255, 0.8);
 		border: none;
+		font-size: 18px;
+		border-radius: 3px;
 	}
 	button {
 		width: 10%;
