@@ -40,6 +40,9 @@ module YtVid
     x = Nokogiri::HTML(open("https://www.youtube.com/watch?v=#{video_code}"))
     {
       video: video_code,
+      user_name: x.css('a.yt-user-name').text,
+      description: x.css('p#eow-description').text,
+      category: x.css('li.watch-meta-item:nth-child(1)').css('ul:nth-child(2)').css('li:nth-child(1)').css('a:nth-child(1)').first[:href].try(:[], 1..-1),
       views: Integer(String(/(\d+)/.match(x.css('div.watch-view-count').text.strip.gsub(',', ''))))*1000,
       likes: Integer(String(/(\d+)/.match(x.css('button#watch-like').text.strip.gsub(',', ''))))*1000,
       dislikes: Integer(String(/(\d+)/.match(x.css('button#watch-dislike').text.strip.gsub(',', ''))))*1000,
