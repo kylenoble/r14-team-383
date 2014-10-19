@@ -91,7 +91,7 @@ def seed_db(csv_file, team_abbrevs, value)
 		away_team_abv = team_abbrevs[away_team]
 		away_score = row[:score_against]
 		team_urls = create_box_url(home_team_abv, away_team_abv, date)
-    puts team_urls
+
 		home_url = team_urls[0]
 		home_players = parse_player_data(home_url)
 		away_url = team_urls[1]
@@ -104,11 +104,11 @@ def seed_db(csv_file, team_abbrevs, value)
 
 		if @i % 500 == 0
 			sleep(300)
-			puts "sleep complete"
+			puts "Sleep complete"
 		end
 
 		unless Game.find_by(date: date, home_team: home_team)
-			puts "game created!"
+			puts "Game created!"
 			Game.create(game_type: game_type, date: date, home_team: home_team, home_team_abv: home_team_abv, home_score: home_score, home_url: home_url, home_players: home_players, away_team: away_team, away_team_abv: away_team_abv, away_score: away_score, away_url: away_url, away_players: away_players)
 		end
 	end
