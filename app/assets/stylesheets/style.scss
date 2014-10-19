@@ -203,25 +203,25 @@ tr:nth-of-type(2n+1) {
 	text-align: center;
 }
 
-@mixin colors ($color) {
-    h3 {
-        color: $color;
-    }
-    th {
-        background-color: $color;
-    }
-    tr:nth-of-type(2n+1) {
-        background-color: lighten($color, 50%);
-    }
-}
+// @mixin colors ($color) {
+//     h3 {
+//         color: $color;
+//     }
+//     th {
+//         background-color: $color;
+//     }
+//     tr:nth-of-type(2n+1) {
+//         background-color: lighten($color, 50%);
+//     }
+// }
 
-.mia {
-    @include colors (#B62630);
-}
+// .mia {
+//     @include colors (#B62630);
+// }
 
-.sas {
-    @include colors (#BEC8C9);
-}
+// .sas {
+//     @include colors (#BEC8C9);
+// }
 
 .over_header {
 	display: none;
@@ -245,4 +245,27 @@ button.click-mask {
 	bottom: 0;
 	background-color: transparent;
 	width: 100%;
+}
+
+h3 {
+	margin-top: 50px;
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+table.game-info {
+	margin-top: 0 !important;
+}
+.game-info tr:nth-of-type(2n+1), .links tr:nth-of-type(2n+1) {
+	background-color: #fff;
+}
+.table.game-info > tbody > tr > td {
+	border-top: none;
+	text-align: left !important;
+}
+
+//panels
+.panel .col-md-5 {
+	padding: 0;
+	padding-bottom: 50px;
 }

@@ -1,65 +1,59 @@
 <link data-turbolinks-track="true" href="/assets/sample.css?body=1" media="all" rel="stylesheet" />
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <div class="row" style="height:80px;">
-  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation" style="background-color=rgba(0, 0, 0, .8);">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">reNBA</a>
+        <a class="navbar-brand" href="/">reNBA</a>
       </div>
-
-      <form class="navbar-form navbar-right" role="search">
-        <input type="text" class="form-control" placeholder="Search">
-        <button type="submit" class="form-control btn-danger" style="margin-left:-8px;height:34px;width:100px;">Search</button>
-      </form>
     </div>
   </nav>
 </div>
 
 <div class="container videos">
   <div class="row">
-    <div class="col-md-2">
-      <table class="table" style="width:100%;margin-top:40px;">
+      <div class="col-md-9">
+
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src=<%= YtVid.string_to_url(@video.try(:video_code),{embed: true, autoplay: true, origin: request.env["REQUEST_URI"]}) %>>></iframe>
+        </div>
+
+      </div>
+
+    <div class="col-md-3">
+      <table class="table game-info" style="width:100%;margin-top:40px;">
         <tr>
-          <td>
+          <th>
             <span class="h3">GAME INFO</span>
-          </td>
+          </th>
         </tr>
         <tr>
-          <td class="bg-success">
+          <td>
             <span class="text-muted"><%= @game.date.strftime("%A %B %e, %Y") %></span>
           </td>
         </tr>
         <tr>
-          <td class="bg-success">
+          <td>
             <span class="h4">Home</span>
           </td>
         </tr>
         <tr>
-          <td class="bg-success">
-            <span class="text-muted pull-right"><%= @game.home_team %></span>
+          <td>
+            <span class="text-muted"><%= @game.home_team %></span>
           </td>
         </tr>
         <tr>
-          <td class="bg-success">
+          <td>
             <span class="h4">Away</span>
           </td>
         </tr>
         <tr>
-          <td class="bg-success">
-            <span class="text-muted pull-right"><%= @game.away_team %></span>
+          <td>
+            <span class="text-muted"><%= @game.away_team %></span>
           </td>
         </tr>
       </table>
-    </div>
-    <div class="col-md-8">
-
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src=<%= YtVid.string_to_url(@video.try(:video_code),{embed: true, autoplay: true, origin: request.env["REQUEST_URI"]}) %>>></iframe>
-      </div>
-
-
-    </div>
-    <div class="col-md-2">
-      <table class="table" style="width:100%;margin-top:40px;">
+      <table class="table links" style="width:100%;margin-top:40px;">
         <% @links.each do |link_item|%>
           <tr>
             <td>
@@ -69,9 +63,15 @@
         <% end %>
       </table>
     </div>
+
+
+
   </div>
   <div class="row">
-    <br /><br /><br />
-    <%= @game.to_xml.html_safe %>
+    <br /><br />
+    <div class="text-center"><h3><%= @game.home_team %></h3></div>
+    <%= create_box(@game.home_url, @game.home_team_abv).html_safe %>
+    <div class="text-center"><h3><%= @game.away_team %></h3></div>
+    <%= create_box(@game.away_url, @game.away_team_abv).html_safe %>
   </div>
 </div>
