@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20141018190114) do
   add_index "games", ["home_team"], name: "index_games_on_home_team"
 
   create_table "videos", force: true do |t|
-    t.integer  "game_id"
+    t.integer  "game_id",                         null: false
     t.text     "name"
     t.text     "video_code"
     t.integer  "renba_views",     default: 1,     null: false

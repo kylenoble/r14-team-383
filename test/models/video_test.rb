@@ -3,7 +3,7 @@
 # Table name: videos
 #
 #  id              :integer          not null, primary key
-#  game_id         :integer
+#  game_id         :integer          not null
 #  name            :text
 #  video_code      :text
 #  renba_views     :integer          default("1"), not null
