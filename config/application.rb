@@ -13,6 +13,6 @@ module ReNBA
 
     config.encoding = "utf-8"
 
-    confid.redis_address = ENV["REDISGREEN_URL"]
+    config.redis_address = ENV["REDISGREEN_URL"]
   end
 end
