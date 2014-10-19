@@ -88,7 +88,9 @@ input, button, .btn, .form-control {
 		border-radius: 0;
 	}
 	input {
-		width:60%;
+		width:70%;
+		height: 40px;
+		padding-left: 5px;
 		background-color: rgba(255, 255, 255, 0.8);
 		border: none;
 	}
@@ -97,7 +99,8 @@ input, button, .btn, .form-control {
 	}
 	textarea:focus, input:focus { 
 		outline: none;
-		background-color: rgba(255, 255, 255, 0.9); 
+		background-color: rgba(255, 255, 255, 0.9);
+		color:black; 
 	}
 }
 
@@ -126,6 +129,35 @@ input, button, .btn, .form-control {
 		border: 1px solid darken($red, 7%);
 	}
 }
+<<<<<<< HEAD
+
+.home {
+	position: relative;
+	float: left;
+	margin-left: 3%;
+}
+
+.away {
+	position:relative;
+	float: right;
+	margin-right: 3%;
+}
+
+.hit {
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.panel {
+	background-color:white;
+	padding-bottom: 10%;
+}
+
+.panel-default > .panel-heading {
+	text-align: center;
+	margin-bottom: 2%;
+}
+=======
 // .fill {
 // 	background-color: $trans-black;
 // }
@@ -142,3 +174,4 @@ input, button, .btn, .form-control {
 
 
 
+>>>>>>> 797f1f739b907499bbc7875cb22455e984a76b30

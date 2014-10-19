@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    #@games = Game.all
+    search_term = params[:query]
   end
 
   private
