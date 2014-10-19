@@ -103,19 +103,6 @@
         }
         res += '</span></div>';
       }
-      /// hit title (id)
-      if ('id' !== '') {
-        var v = hit._highlightResult['id'] ?
-          hit._highlightResult['id'].value :
-          hit['id'];
-        res += '<span class="last-item game-id">Id: ';
-        if ('' !== '') { // url attribute
-          res += '<a href="' + stripTags(hit['']) + '">' + v + '</a>';
-        } else {
-          res += v;
-        }
-        res += '</span> ';
-      }
       /// hit title (form)
       if ('id' !== '') {
         var v = hit._highlightResult['id'] ?
