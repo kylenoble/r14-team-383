@@ -18,7 +18,7 @@ class GamesController < ApplicationController
   def sample
     @game = Game.first
     @video = Video.where(game_id: @game.id).sort_by_quality.first
-    @links = ["Link A", "Link B", "Link C", "Link D", "Link E", "Link F"]
+    @links = Link.all.take(8).shuffle
     render layout: nil
   end
 

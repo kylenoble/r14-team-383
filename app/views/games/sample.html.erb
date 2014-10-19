@@ -57,7 +57,7 @@
         <% @links.each do |link_item|%>
           <tr>
             <td>
-              <span class="pull-right"><a><%= link_item %></a></span>
+              <span class="pull-right"><a href="<%= link_item.try(:href) %>"><%= link_item.try(:name) %></a></span>
             </td>
           </tr>
         <% end %>

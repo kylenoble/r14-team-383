@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018190114) do
+ActiveRecord::Schema.define(version: 20141019195353) do
 
   create_table "games", force: true do |t|
     t.text     "game_type"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20141018190114) do
   add_index "games", ["date"], name: "index_games_on_date"
   add_index "games", ["home_players"], name: "index_games_on_home_players"
   add_index "games", ["home_team"], name: "index_games_on_home_team"
+
+  create_table "links", force: true do |t|
+    t.text     "name"
+    t.text     "href"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "videos", force: true do |t|
     t.integer  "game_id",                         null: false
