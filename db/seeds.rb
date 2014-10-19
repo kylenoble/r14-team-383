@@ -128,9 +128,9 @@ def seed_links
 end
 
 if Rails.env["production"]
-	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
+  seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
   seed_links
 else
-	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
+  seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
   seed_links
 end

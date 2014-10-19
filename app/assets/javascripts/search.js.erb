@@ -116,6 +116,26 @@
         }
         res += '</span> ';
       }
+      /// hit title (form)
+      if ('id' !== '') {
+        var v = hit._highlightResult['id'] ?
+          hit._highlightResult['id'].value :
+          hit['id'];
+        res += 
+        res="";
+        res += "<form accept-charset=\"UTF-8\" action=\"\/games\/show\" data-remote=\"true\" id='game"+v+"' method=\"post\">";
+        res += "<input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" \/>";
+        res += "<input name=\"_method\" type=\"hidden\" value=\"patch\" \/>";
+        res += "  <button style=\"border:none;\" class=\"click-mask\" onclick=\"$('#game"+v+"').trigger('submit.rails');\">";
+        res += "";
+        res += "";
+        res += "    <input name=\"game[id]\" value="+v+" type=\"hidden\">";
+        res += "    <input name=\"authenticity_token\" type=\"hidden\" value=\"xzW40nlbBvwzT3xtpr1BDcMaglaQ1yas9M\/YkALyiCgczrZi4TJ06mei2jRKD58tQsDQ2CbYrCZqpJbPKm6Rfg==\" \/>";
+        res += "";
+        res += "";
+        res += "  <\/button>";
+        res += "<\/form>";
+      }
       // display all other attributes?
       if (false) {
         res += '<dl class="dl-horizontal">';
