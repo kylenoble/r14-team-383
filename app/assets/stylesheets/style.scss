@@ -247,9 +247,9 @@ button.click-mask {
 
 h3 {
 	margin-top: 50px;
-	&:first-of-type {
-		margin-top: 0;
-	}
+}
+h3.top {
+	margin-top: 0;
 }
 table.game-info {
 	margin-top: 0 !important;
@@ -266,4 +266,7 @@ table.game-info {
 .panel .col-md-5 {
 	padding: 0;
 	padding-bottom: 50px;
+}
+.hidden {
+	display: none;
 }
