@@ -12,5 +12,7 @@ module ReNBA
     config.autoload_paths << Rails.root.join('lib')
 
     config.encoding = "utf-8"
+
+    confid.redis_address = ENV["REDISGREEN_URL"]
   end
 end
