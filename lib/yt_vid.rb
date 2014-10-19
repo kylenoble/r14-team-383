@@ -17,7 +17,7 @@ module YtVid
       {
         title: result.css("div:nth-child(1)").css("div:nth-child(2)").css("h3").text,
         video: result.css("div:nth-child(1)").css("div:nth-child(2)").css("h3 > a").first[:href].dup.tap{|i|i.replace i[(i.index("=").to_i+1)..-1]},
-        views: result.css("div:nth-child(1)").css("div:nth-child(2)").css("li:nth-child(3)").text,
+        views: Integer(String(/(\d+)/.match(result.css("div:nth-child(1)").css("div:nth-child(2)").css("li:nth-child(3)").text.gsub(",", "")))),
         new: !!result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(4)").css("ul:nth-child(1)").text["New"],
         hd: !!result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(4)").css("ul:nth-child(1)").text["HD"],
         description: result.css("div:nth-child(1)").css("div:nth-child(2)").css("div:nth-child(3)").text,
@@ -36,15 +36,15 @@ module YtVid
       map {|v| [v.text,v.href[(v.href.index("=")+1)..-1]]}
   end
 
-  def self.vid_stats(video_code) # Video page hit.  Views are rounded to the nearest 1000
+  def self.vid_stats(video_code) # Video page hit.  Views are rounded to nearest thousand.
     x = Nokogiri::HTML(open("https://www.youtube.com/watch?v=#{video_code}"))
     {
       video: video_code,
-      views: Integer(x.css('div.watch-view-count').text.strip.gsub(",", "").<<("000")),
-      likes: Integer(x.css('button#watch-like').text.strip.gsub(",", "").<<("000")),
-      dislike: Integer(x.css('button#watch-dislike').text.strip.gsub(",", "").<<("000")),
+      views: Integer(String(/(\d+)/.match(x.css('div.watch-view-count').text.strip.gsub(',', ''))))*1000,
+      likes: Integer(String(/(\d+)/.match(x.css('button#watch-like').text.strip.gsub(',', ''))))*1000,
+      dislikes: Integer(String(/(\d+)/.match(x.css('button#watch-dislike').text.strip.gsub(',', ''))))*1000,
       published: x.css('strong.watch-time-text').text[13..-1],
-      license: x.css('li.watch-meta-item:nth-child(2)').text.gsub("\n", '').strip.tap {|i| i.replace i[i.index(" ")..-1].strip}
+      license: x.css('li.watch-meta-item:nth-child(2)').text.gsub("\n", '').strip.tap {|i| i.replace i[i.index(' ').to_i..-1].strip}
     }
   end
 

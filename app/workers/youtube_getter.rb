@@ -9,15 +9,27 @@ class YoutubeGetter
   def self.perform(game_id, *args)
     gathering_data = YtVid.
         query( search_string(game_id) ).
-        take(grab_this_qty).
         sort_by {|hsh| hsh[:length].gsub(":","").to_i}.
-        reverse.delete_if {|hsh| hsh[:length].gsub(":","").to_i < 200}
+        reverse.take(grab_this_qty).
+        delete_if {|hsh| hsh[:length].gsub(":","").to_i < 200}
+
     gathering_data.each do |video_data|
-
+      stats = YtVid.vid_stats(video_data[:video])
       Video.new(
-
-      )
-
+        game_id:              game_id,
+        name:                 video_data[:title],
+        video_code:           video_data[:video],
+        views:                video_data[:views],
+        new:                  video_data[:new],
+        hd:                   video_data[:hd],
+        highlights:           !!video_data[:title].=~(/highlights/i),
+        description:          video_data[:description],
+        length:               video_data[:length],
+        likes:                stats[:likes],
+        dislikes:             stats[:dislikes],
+        published_at:         stats[:published],
+        license:              stats[:license]
+      ).save
     end
   end
 
