@@ -172,5 +172,57 @@ input, button, .btn, .form-control {
   	background-color: transparent;
 }
 
+table {	
+	margin-top: 10px;
+	background-color: white;
+	// box-sizing: border-box;
+	font-size: 12px;
+}
+td {
+	padding: 4px 11px;
+	border-right: 1px solid rgba(255, 255, 255, .95);
+	&:last-of-type {
+		border-right: none;
+	}
+}
 
+th {
+	background-color: $blue;
+	padding: 8px;
+	color: white;
+	border-right: 1px solid rgba(255, 255, 255, .2);
+	&:last-of-type {
+		border-right: none;
+	}
+}
+tr:nth-of-type(2n+1) {
+	background-color: lighten(black, 96%);
+}
 
+.text-center {
+	text-align: center;
+}
+
+@mixin colors ($color) {
+    h3 {
+        color: $color;
+    }
+    th {
+        background-color: $color;
+    }
+    tr:nth-of-type(2n+1) {
+        background-color: lighten($color, 50%);
+    }
+}
+
+.mia {
+    @include colors (#B62630);
+}
+
+.sas {
+    @include colors (#BEC8C9);
+}
+
+.over_header {
+	display: none;
+}
