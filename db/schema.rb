@@ -40,18 +40,18 @@ ActiveRecord::Schema.define(version: 20141018190114) do
     t.integer  "game_id"
     t.text     "name"
     t.text     "video_code"
-    t.integer  "renba_views"
-    t.integer  "problem_reports"
+    t.integer  "renba_views",     default: 1,     null: false
+    t.integer  "problem_reports", default: 1,     null: false
     t.text     "license"
     t.datetime "published_at"
-    t.integer  "views"
-    t.integer  "likes"
-    t.integer  "dislikes"
-    t.boolean  "new"
-    t.boolean  "hd"
+    t.integer  "views",           default: 1,     null: false
+    t.integer  "likes",           default: 1,     null: false
+    t.integer  "dislikes",        default: 1,     null: false
+    t.boolean  "new",             default: false, null: false
+    t.boolean  "hd",              default: false, null: false
     t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "videos", ["created_at"], name: "index_videos_on_created_at"

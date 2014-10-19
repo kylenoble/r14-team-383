@@ -76,13 +76,12 @@ def parse_player_data(url)
 			player_string += (line.content + " ")
 		end
 	end
-	return player_string
+	player_string
 end
 
 @i = 0
 def seed_db(csv_file, team_abbrevs, value)
-	games = CSV.open csv_file, headers: true, header_converters: :symbol
-	games.each do |row|
+	CSV.foreach(csv_file, {headers: true, header_converters: :symbol}) do |row|
 		game_type = row[:game_type]
 		date = row[:date]
 		home_team = row[:home_team]
@@ -105,20 +104,20 @@ def seed_db(csv_file, team_abbrevs, value)
 
 		if @i % 500 == 0
 			sleep(300)
-			puts "sleep complete"
+			puts "Sleep complete"
 		end
 
 		unless Game.find_by(date: date, home_team: home_team)
-			puts "game created!"
+			puts "Game created!"
 			Game.create(game_type: game_type, date: date, home_team: home_team, home_team_abv: home_team_abv, home_score: home_score, home_url: home_url, home_players: home_players, away_team: away_team, away_team_abv: away_team_abv, away_score: away_score, away_url: away_url, away_players: away_players)
 		end
 	end
 end
 
 if Rails.env["production"]
-	seed_db("./public/nba-data.csv", team_abbrevs, 50000)
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
 else
-	seed_db("./public/nba-data.csv", team_abbrevs, 10)
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
 end
 
 

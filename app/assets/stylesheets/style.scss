@@ -74,6 +74,7 @@ input, button, .btn, .form-control {
 	h1 {
 		font-size: 56px;
 		margin-bottom: 30px;
+		text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 	}
 }
 .carousel-content .form-group {
@@ -128,6 +129,7 @@ input, button, .btn, .form-control {
 		border: 1px solid darken($red, 7%);
 	}
 }
+<<<<<<< HEAD
 
 .home {
 	position: relative;
@@ -155,3 +157,21 @@ input, button, .btn, .form-control {
 	text-align: center;
 	margin-bottom: 2%;
 }
+=======
+// .fill {
+// 	background-color: $trans-black;
+// }
+
+//animations
+.fill {
+    transition: background-color 0.8s ease;
+  	background-color: $trans-black;
+}
+.nofill {
+	 transition: background-color 0.5s ease;
+  	background-color: transparent;
+}
+
+
+
+>>>>>>> 797f1f739b907499bbc7875cb22455e984a76b30
