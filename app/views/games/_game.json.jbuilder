@@ -1,0 +1,1 @@
+json.(game, :id, :date, :home_team, :home_score, :home_url, :away_team, :away_score, :away_url, :videos)

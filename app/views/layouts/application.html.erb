@@ -3,8 +3,15 @@
 <head>
   <title>ReNBA</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="//cdn.jsdelivr.net/algoliasearch/latest/algoliasearch.min.js"></script>
+  <script src="//cdn.jsdelivr.net/hogan.js/3.0.0/hogan.common.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.single-game').hide();
+  });
+  </script>
 </head>
 <body>
 <div class="row">
@@ -37,22 +44,26 @@
       <div class="row">
         <div class="col-sm-12">
           <h1>Watch NBA Games, ANYTIME</h1>
-          <form role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-              <button type="submit" class="btn btn-default red">Search</button>
+          <div class="form-group">
+            <div id='inputfield'>
+              <input class="input" autocomplete='off' autocorrect='off' placeholder='Search for Teams, Players, and Dates' spellcheck='false' type='text'>
             </div>
-            
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div> <!-- Carousel -->
 
+<section class='panel'>
+  <div class='panel-body'>
+    <div class='text-right text-sm' id='stats'></div>
+    <div class="panel-body" id="hits"></div>
+    <div id="pagination"></div>
+  </div>
+</section>
 
-
-<div class="container">
+<div class="container single-game">
   <div class="row">
     <div class="col-md-2">
       <%= render partial: 'games/left' %>
@@ -68,5 +79,16 @@
     <%= render partial: 'games/stats' %>
   </div>
 </div>
+<script type="text/template" id="pagination-template">
+  <div class="text-center">
+    <ul class="pagination">
+      <li {{^prev_page}}class="disabled"{{/prev_page}}><a href="#" onclick="{{#prev_page}}gotoPage({{ prev_page }});{{/prev_page}} return false;">&laquo;</a></li>
+      {{#pages}}
+        <li class="{{#current}}active{{/current}}{{#disabled}}disabled{{/disabled}}"><a href="#" onclick="{{^disabled}}gotoPage({{ number }});{{/disabled}} return false;">{{ number }}</a></li>
+      {{/pages}}
+      <li {{^next_page}}class="disabled"{{/next_page}}><a href="#" onclick="{{#next_page}}gotoPage({{ next_page }});{{/next_page}} return false;">&raquo;</a></li>
+    </ul>
+  </div>
+</script>
 </body>
 </html>
