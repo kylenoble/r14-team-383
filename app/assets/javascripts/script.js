@@ -12,3 +12,7 @@ $( window ).scroll(function() {
 if ($('nav').hasClass('fill')) {
 	$('.navbar-inverse form').show();
 }
+
+$(window).ready(function() {
+	$("th").removeClass("tooltip");
+})
