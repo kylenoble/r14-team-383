@@ -1,0 +1,114 @@
+@mixin colors ($color) {
+	h3 {
+		color: $color;
+	}
+	th {
+		background-color: $color;
+	}
+	tr:nth-of-type(2n+1) {
+		background-color: lighten($color, 50%);
+	}
+}
+
+.atl {
+	@include colors (#FF0000);
+}
+.bos {
+	@include colors (#009E60);
+}
+.brk, .njn, .nyn {
+	@include colors (#000);
+}
+.chh {
+	@include colors (#1C0C65);
+}
+.cha {
+	@include colors (#EF6630)
+}
+.chi {
+	@include colors (#d4001f);
+}
+.cle {
+	@include colors (#b3121d);
+}
+.dal {
+	@include colors (#0b60ad);
+}
+.den {
+	@include colors (#4b90cd);
+}
+.det {
+	@include colors (#00519a);
+}
+.gsw, .sfw {
+	@include colors (#04529c);
+}
+.hou {
+	@include colors (#ce1138);
+}
+.ind {
+	@include colors (#092c57);
+}
+.lac, .sdc {
+	@include colors (#ee2944);
+}
+.buf {
+	@include colors (#047AC4);
+}
+.lal {
+	@include colors (#4a2583);
+}
+.mem, .van {
+	@include colors (#001f70);
+}
+.mia {
+	@include colors (#B62630);
+}
+.mil {
+	@include colors (#003614);
+}
+.min {
+	@include colors (#0f4d92);
+}
+.noh, .nok {
+	@include colors (#002b5c);
+}
+.nyk {
+	@include colors (#0953a0);
+}
+.okc {
+	@include colors (#007dc3);
+}
+.sea {
+	@include colors (#016332);
+}
+.orl {
+	@include colors (#0047ab);
+}
+.phi {
+	@include colors (#d0103a);
+}
+.pho {
+	@include colors (#1c105e);
+}
+.por, .kck, .kco {
+	@include colors (#f0163a);
+}
+.cin {
+	@include colors (#003399);
+}
+.tor {
+	@include colors (#b31b1b);
+}
+.sas {
+	@include colors (#BEC8C9);
+}
+.uta {
+	@include colors (#00275d);
+}
+.was {
+	@include colors (#c6c030);
+}
+.wsb, .cap, .bal {
+	@include colors (#FB0030);
+}
