@@ -12,13 +12,7 @@
 
 <div class="container videos">
   <div class="row">
-      <div class="col-md-9">
-
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src=<%= YtVid.string_to_url(@video.try(:video_code),{embed: true, autoplay: true, origin: request.env["REQUEST_URI"]}) %>>></iframe>
-        </div>
-
-      </div>
+      
 
     <div class="col-md-3">
       <table class="table game-info" style="width:100%;margin-top:40px;">
@@ -63,6 +57,15 @@
         <% end %>
       </table>
     </div>
+    
+      <div class="col-md-9">
+
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src=<%= YtVid.string_to_url(@video.try(:video_code),{embed: true, autoplay: true, origin: request.env["REQUEST_URI"]}) %>>></iframe>
+        </div>
+
+      </div>
+  
 
 
 
