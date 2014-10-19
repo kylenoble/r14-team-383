@@ -1,0 +1,1 @@
+heroku pg:reset HEROKU_POSTGRESQL_COBALT_URL

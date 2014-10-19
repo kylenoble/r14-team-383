@@ -1,4 +1,6 @@
 Rails.application.configure do
+
+  config.redis_address = ENV['REDISGREEN_URL']
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
