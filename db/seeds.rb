@@ -13,13 +13,9 @@ require 'nokogiri'
 team_abbrevs = {
 	"Atlanta Hawks"=> "ATL",
 	"Boston Celtics" => "BOS",
-<<<<<<< ours
-	"New Jersey Nets" => "NJN",
-=======
 	"Brooklyn Nets" => "BRK",
 	"New Jersey Nets" => "NJN",
 	"New York Nets" => "NYN",
->>>>>>> theirs
 	"Charlotte Hornets" => "CHH",
 	"Charlotte Bobcats" => "CHA",
 	"Chicago Bulls" => "CHI",
@@ -28,11 +24,7 @@ team_abbrevs = {
 	"Denver Nuggets" => "DEN",
 	"Detroit Pistons" => "DET",
 	"Golden State Warriors" => "GSW",
-<<<<<<< ours
-	"San Fransisco Warriors" => "SFW",
-=======
 	"San Francisco Warriors" => "SFW",
->>>>>>> theirs
 	"Houston Rockets" => "HOU", 
 	"San Diego Rockets" => "SDR",
 	"Indiana Pacers" => "IND",
@@ -60,11 +52,7 @@ team_abbrevs = {
 	"Kansas City-Omaha Kings" => "KCO",
 	"Cincinnati Royals" => "CIN",
 	"San Antonio Spurs" => "SAS",
-<<<<<<< ours
-	"Toronto Rapters" => "TOR",
-=======
 	"Toronto Raptors" => "TOR",
->>>>>>> theirs
 	"Utah Jazz" => "UTA",
 	"New Orleans Jazz" => "NOJ",
 	"Washington Wizards" => "WAS",
@@ -88,31 +76,6 @@ def parse_player_data(url)
 			player_string += (line.content + " ")
 		end
 	end
-<<<<<<< ours
-	return player_string
-end
-
-games = CSV.open "../public/nba-data.csv", headers: true, header_converters: :symbol
-games.each do |row|
-	game_type = row[:game_type]
-	date = row[:date]
-	home_team = row[:home_team_]
-	home_team_abv = team_abbrevs[home_team]
-	home_score = row[:score_for]
-	away_team = row[:away_team]
-	away_team_abv = team_abbrevs[away_team]
-	away_score = row[:score_against]
-
-	team_urls = create_box_url(home_team_abv, away_team_abv, date)
-
-	home_url = team_urls[0]
-	home_players = parse_player_data(home_url)
-	away_url = team_urls[1]
-	away_players = parse_player_data(away_url)
-	
-	Game.create(game_type: game_type, date: date, home_team: home_team, home_team_abv: home_team_abv, home_score: home_score, home_url: home_url, home_players: home_players, away_team: away_team, away_team_abv: away_team_abv, away_score: away_score, away_url: away_url, away_players: away_players)
-end
-=======
 	player_string
 end
 
@@ -159,4 +122,3 @@ else
 end
 
 
->>>>>>> theirs
