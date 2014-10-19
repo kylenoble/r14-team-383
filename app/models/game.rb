@@ -32,7 +32,7 @@ class Game < ActiveRecord::Base
   include AlgoliaSearch
 
   algoliasearch per_environment: true do
-    attributesToIndex ['date', 'home_team', 'away_team', 'home_players', 'away_players']
+    attributesToIndex ['date', 'home_team', 'away_team', 'home_players', 'away_players', 'id']
   end
 end
 
