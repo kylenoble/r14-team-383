@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :games, only: :index
   match '/sample_game/', to: 'games#sample', via: :get, as: 'sample_game'
+  mount Resque::Server, :at => "/admin/resque"
 
 end
