@@ -16,18 +16,24 @@ $(window).ready(function() {
 $(window).ready(function() {
 	$('#search').keyup(function() {
 		$('.panel').removeClass('hidden');
-		$('.carousel-content').css('height', '90%');
 	});
-	// $('#search').keyup(function() {
-		
-	// });
+	$('#search').keyup(function() {
+		$('.chevron.bottom').fadeIn();
+	});
 });
 
-// $(document).ready(function() {	
-// 	if ($('#search').val().length > 0) {
-// 		$('.panel').removeClass('hidden');
-// 	} else {
-// 		$('.panel').addClass('hidden');
-// 	}
-// });
+$(document).ready(function() {	
+	  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top-70
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
 
