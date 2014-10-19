@@ -8,12 +8,10 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.where(id: params["id"]).first
-    @video = Video.where(game_id: @game.id).sort_by_quality.first
-    @links = Link.all.take(8).shuffle
+    @game = Game.first
     respond_to do |format|
-      format.json { render json: {"game" => @game.as_json , "video" => @video.as_json, "links" => @links.as_json(only: [:name, :href])} }
-      format.html { render json: {"game" => @game.as_json , "video" => @video.as_json, "links" => @links.as_json(only: [:name, :href])} }
+      format.js {render 'sample'} # Change render when ready
+      format.html {render 'show', object: :game, layout: nil} # Change render when ready
     end
   end
 
