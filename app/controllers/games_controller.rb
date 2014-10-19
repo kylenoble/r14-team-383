@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     end
   end
 
-  def sample
+  def view
     @game = Game.first
     @video = Video.where(game_id: @game.id).sort_by_quality.first
     @links = Link.all.take(8).shuffle
