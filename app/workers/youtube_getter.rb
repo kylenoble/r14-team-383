@@ -10,11 +10,15 @@ class YoutubeGetter
     gathering_data = YtVid.
         query( search_string(game_id) ).
         sort_by {|hsh| hsh[:length].gsub(":","").to_i}.
-        reverse.take(grab_this_qty).
+        delete_if {|hsh| hsh[:description].=~(/NBA 2K1\d/i)}.
+        take(grab_this_qty).
         delete_if {|hsh| hsh[:length].gsub(":","").to_i < 200}
 
     gathering_data.each do |video_data|
       stats = YtVid.vid_stats(video_data[:video])
+      next if stats[:description].=~(/NBA 2K1\d/i)
+      next if stats[:category].=~(/gaming/i)
+      next if stats[:username].=~(/Damien Prince/i)
       Video.new(
         game_id:              game_id,
         name:                 video_data[:title],
@@ -23,7 +27,7 @@ class YoutubeGetter
         new:                  video_data[:new],
         hd:                   video_data[:hd],
         highlights:           !!video_data[:title].=~(/highlights/i),
-        description:          video_data[:description],
+        description:          stats[:description],
         length:               video_data[:length],
         likes:                stats[:likes],
         dislikes:             stats[:dislikes],
@@ -38,13 +42,15 @@ class YoutubeGetter
   def self.search_string(game_id)
     game = Game.where(game_id).first
     output = ''
+    output.concat( "#{game.game_type} " ) if game.game_type["playoffs"]
     output.concat( "\"#{game.home_team}\"" )
     output.concat( " vs " )
     output.concat( "\"#{game.away_team}\"" )
     output.concat( " #{game.date.strftime('%B %d, %Y')}" )
+    output.concat( " -2K1 - Simulation")
   end
 
   def self.grab_this_qty
-    8
+    10
   end
 end

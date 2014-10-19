@@ -31,4 +31,18 @@
 
 class Video < ActiveRecord::Base
 	belongs_to :game
+
+  def self.sort_by_quality
+    delete_if_bad(all.sort_by(&:quality_stat))
+  end
+
+  def quality_stat
+    Float(problem_reports)/Float(renba_views)
+  end
+
+  private
+  def self.delete_if_bad(arr)
+    arr.delete_if {|i| i.renba_views.>(50) and i.quality_stat.>(0.332)}
+  end
+
 end
