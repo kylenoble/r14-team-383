@@ -115,10 +115,22 @@ def seed_db(csv_file, team_abbrevs, value)
 	end
 end
 
-if Rails.env["production"]
-	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
-else
-	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
+def seed_links
+  Mechanize.new.get('https://www.youtube.com/user/NBA/playlists').links.
+      to_a.delete_if {|i| i.text["\n"]}.
+      select {|i| i.href["/playlist?"]}.
+      each do |i|
+    Link.create(
+        name: i.text.tap {|w| w.replace("NBA #{w}") unless w.=~(/NBA/i)},
+        href: "https://www.youtube.com".concat(i.href)
+    )
+  end
 end
 
-
+if Rails.env["production"]
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
+  seed_links
+else
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
+  seed_links
+end
