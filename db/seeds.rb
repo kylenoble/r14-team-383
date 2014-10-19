@@ -118,7 +118,7 @@ end
 if Rails.env["production"]
 	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 50000)
 else
-	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 10)
+	seed_db(Rails.root.to_s + "/public/nba-data.csv", team_abbrevs, 20)
 end
 
 

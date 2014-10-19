@@ -231,3 +231,18 @@ tr:nth-of-type(2n+1) {
 	position:absolute;
 	margin-top: 90px;
 }
+
+.panel {
+	position:relative;
+}
+
+button.click-mask {
+	position: absolute;
+	border-radius: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: transparent;
+	width: 100%;
+}
