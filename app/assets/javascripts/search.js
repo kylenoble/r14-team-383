@@ -50,7 +50,7 @@
         if (v && v.trim() !== '') {
           res += '<div class="panel-heading"><span class="panel-title date">Game Date:  ' + v + ' </span></div>';
         }
-      }
+      }      
       /// hit title (home_team)
       if ('home_team' !== '') {
         var v = hit._highlightResult['home_team'] ?
@@ -95,13 +95,26 @@
         var v = hit._highlightResult['away_score'] ?
           hit._highlightResult['away_score'].value :
           hit['away_score'];
-        res += '<span class="h5 last-item">';
+        res += '<span class="h5">';
         if ('' !== '') { // url attribute
           res += '<a href="' + stripTags(hit['']) + '">' + v + '</a>';
         } else {
           res += v;
         }
         res += '</span></div>';
+      }
+      /// hit title (id)
+      if ('id' !== '') {
+        var v = hit._highlightResult['id'] ?
+          hit._highlightResult['id'].value :
+          hit['id'];
+        res += '<span class="last-item game-id">Id: ';
+        if ('' !== '') { // url attribute
+          res += '<a href="' + stripTags(hit['']) + '">' + v + '</a>';
+        } else {
+          res += v;
+        }
+        res += '</span> ';
       }
       // display all other attributes?
       if (false) {
