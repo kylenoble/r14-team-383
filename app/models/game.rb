@@ -28,10 +28,7 @@
 #
 
 class Game < ActiveRecord::Base
-	has_many :videos
-<<<<<<< ours
-end
-=======
+  has_many :videos
   include AlgoliaSearch
 
   algoliasearch per_environment: true do
@@ -39,4 +36,3 @@ end
   end
 end
 
->>>>>>> theirs
