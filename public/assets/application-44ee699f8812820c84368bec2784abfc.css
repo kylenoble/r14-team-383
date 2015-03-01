@@ -4733,7 +4733,7 @@ tbody.collapse.in {
   display: table;
   width: 100%;
   table-layout: fixed;
-  border-collapse: separate;
+  border-collapse: seperate;
 }
 /* line 210, /Users/kylenoble/.rvm/gems/ruby-2.2.0-preview1/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_button-groups.scss */
 .btn-group-justified > .btn,
@@ -4764,7 +4764,7 @@ tbody.collapse.in {
 .input-group {
   position: relative;
   display: table;
-  border-collapse: separate;
+  border-collapse: seperate;
 }
 /* line 13, /Users/kylenoble/.rvm/gems/ruby-2.2.0-preview1/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_input-groups.scss */
 .input-group[class*="col-"] {
@@ -14724,7 +14724,7 @@ tbody.collapse.in {
   display: table;
   width: 100%;
   table-layout: fixed;
-  border-collapse: separate;
+  border-collapse: seperate;
 }
 /* line 210, /Users/kylenoble/.rvm/gems/ruby-2.2.0-preview1/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_button-groups.scss */
 .btn-group-justified > .btn,
@@ -14755,7 +14755,7 @@ tbody.collapse.in {
 .input-group {
   position: relative;
   display: table;
-  border-collapse: separate;
+  border-collapse: seperate;
 }
 /* line 13, /Users/kylenoble/.rvm/gems/ruby-2.2.0-preview1/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_input-groups.scss */
 .input-group[class*="col-"] {
