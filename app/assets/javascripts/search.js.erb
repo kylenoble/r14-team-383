@@ -171,21 +171,12 @@
   
   
   $(document).ready(function() {
-    var algolia = new AlgoliaSearch('PP9Q3BZYXI', '9f7829d832f710086e90718227471e6b');
-    var index = algolia.initIndex('Game');
+    
   
     window.search = function() {
-      var facetFilters = [];
-      for (var refine in refinements) {
-        if (refinements[refine]) {
-          facetFilters.push(refine);
-        }
-      }
+      
       index.search($("#inputfield input").val(), searchCallback, {
-        hitsPerPage: 10,
-        facets: '*',
-        maxValuesPerFacet: 10,
-        facetFilters: facetFilters
+        
       });
     }
   

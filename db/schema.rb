@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141019195353) do
 
-  create_table "games", force: true do |t|
+  create_table "games", force: :cascade do |t|
     t.text     "game_type"
     t.date     "date"
     t.text     "home_team"
@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 20141019195353) do
   add_index "games", ["home_players"], name: "index_games_on_home_players"
   add_index "games", ["home_team"], name: "index_games_on_home_team"
 
-  create_table "links", force: true do |t|
+  create_table "links", force: :cascade do |t|
     t.text     "name"
     t.text     "href"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "videos", force: true do |t|
+  create_table "videos", force: :cascade do |t|
     t.integer  "game_id",                         null: false
     t.text     "name"
     t.text     "video_code"
